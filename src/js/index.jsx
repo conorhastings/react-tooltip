@@ -12,6 +12,7 @@ const ReactTooltip = React.createClass({
     type: React.PropTypes.string,
     effect: React.PropTypes.string,
     positon: React.PropTypes.object,
+    customClassName: React.PropTypes.string
   },
   
   getInitialState() {
@@ -24,6 +25,7 @@ const ReactTooltip = React.createClass({
       type: "",
       effect: "",
       position: {},
+      customClassName: ""
     }
   },
 
@@ -121,6 +123,7 @@ const ReactTooltip = React.createClass({
       type: e.target.getAttribute("data-type")?e.target.getAttribute("data-type"):(this.props.type?this.props.type:"dark"),
       effect: e.target.getAttribute("data-effect")?e.target.getAttribute("data-effect"):(this.props.effect?this.props.effect:"float"),
       position: e.target.getAttribute("data-position")?e.target.getAttribute("data-position"):(this.props.position?this.props.position:{}),
+      customClassName: e.target.getAttribute("data-customClassName")?e.target.getAttribute("data-customClassName"):(this.props.customClassName?this.props.customClassName: ""),
     })
     this.updateTooltip(e);
   },
@@ -190,7 +193,8 @@ const ReactTooltip = React.createClass({
       {"type-warning": this.state.type === "warning"},
       {"type-error": this.state.type === "error"},
       {"type-info": this.state.type === "info"},
-      {"type-light": this.state.type === "light"}
+      {"type-light": this.state.type === "light"},
+      {this.state.customClassName: this.state.customClassName.length}
     );
 
     return (
